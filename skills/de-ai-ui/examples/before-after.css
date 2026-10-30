@@ -1,0 +1,58 @@
+/* ============================================================
+ * BEFORE：典型 AI 默认输出（命中 slop 清单多项）
+ * ============================================================ */
+.hero-title-before {
+  font-family: "Space Grotesk", sans-serif;           /* slop 字体 (dingyi #2) */
+  font-size: 88px;                                    /* hero 字大得离谱 (#12) */
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);/* 紫蓝渐变 (#8, Xian0063) */
+  -webkit-background-clip: text; color: transparent;
+}
+.eyebrow-before {
+  text-transform: uppercase; letter-spacing: .2em;    /* 全大写小眉标 (#7 #9) */
+  font-size: 11px;                                    /* <12px (#17) */
+}
+.card-before {
+  border: 1px solid #e5e7eb;                          /* 该 0.5px 用了 1px (#15) */
+  border-left: 4px solid #8b5cf6;                     /* 左侧彩色竖线 (#18) */
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 1px 2px #0001, 0 4px 8px #0001, 0 16px 32px #0002; /* 多层阴影 (#4) */
+  background: rgba(139, 92, 246, .06);                /* 半透明叠色 (#4) */
+}
+.card-before .button {
+  border-radius: 16px;                                /* 没做同心圆角 (#14)：应为 16 − 12 = 4 */
+  background: linear-gradient(135deg, #ec4899, #8b5cf6); /* 渐变按钮 (ianneo_ai) */
+  transition: all .6s ease-in;                        /* 慢 + ease-in (ZaynHao #7, Emil) */
+}
+.meta-before::before { content: " · "; }             /* 中点分隔符 (#10) */
+body.before { font-family: "PingFang SC", "Helvetica Neue", sans-serif; } /* 中文在西文前 (ricouii) */
+
+/* ============================================================
+ * AFTER：按 de-ai-ui 规则修正（依赖 tokens.css）
+ * ============================================================ */
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); }
+
+.hero-title {
+  font-size: var(--text-xl);                          /* 克制的标题档位 */
+  font-weight: 600;
+  color: var(--text);                                 /* 黑白灰，颜色留给内容 */
+}
+/* 去掉 eyebrow，用字重 + 颜色建立层级，而不是再加一个字号 */
+.subtitle { font-size: var(--text-md); color: var(--text-muted); }
+
+.card {
+  background: var(--surface);
+  border: var(--hairline) solid var(--border);        /* 统一 hairline */
+  border-radius: 16px;                                /* R */
+  padding: var(--space-3);                            /* p = 12 */
+  /* 无彩色竖线、无多层阴影、无半透明叠色 */
+}
+.card .button {
+  border-radius: calc(16px - var(--space-3));         /* r = R − p = 4 */
+  background: var(--gray-12);                         /* 主按钮用实色灰阶，或 var(--accent) */
+  color: var(--gray-1);
+  font-size: var(--text-md);
+  transition: transform var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+.card .button:active { transform: scale(0.97); }      /* 按下手感 (Emil via Xian0063) */
+.meta { display: flex; gap: var(--space-2); }         /* 用间距代替 "·" */
